@@ -15,7 +15,7 @@ or use `./midiconfigfs.sh --help`.
 Normally you may need something like:
 
 ```sh
-./midiconfigfs.sh --name MYNAME --in-ports 3 --out-port 3
+./midiconfigfs.sh --name MYNAME --in-ports 3 --out-ports 3
 ```
 
 and remove it with
