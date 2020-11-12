@@ -1,0 +1,11 @@
+[Unit]
+Description=Creates an USB MIDI Gadget using available UDC
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/midiconfigfs.sh
+WorkingDirectory=/
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+# TO ENABLE USE: systemctl enable midiconfigfs
+
+# CONFIGFS=/sys/kernel/config
+# NAME="USB Gadget"
+# MANUFACTURER="Unknown"
+# SAFE_NAME=$( echo $NAME | sed 's/[-. ]/_/g' )
+# ID_VENDOR=0x0000
+# ID_PRODUCT=0x0000
+# IN_PORTS=1
+# OUT_PORTS=1
+# SERIAL=0
+# UDC=$( ls -1 /sys/class/udc | head -1 )
+
+# # can modify at /etc/default/midiconfigfs
+# pre_enable(){
+#     true
+# }
+
+# # can modify at /etc/default/midiconfigfs
+# post_enable(){
+#     true
+# }
+

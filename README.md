@@ -24,6 +24,14 @@ and remove it with
 ./midiconfigfs.sh --name MYNAME --remove
 ```
 
+# Orange PI Zero
+
+I had some problems with rmmod g_serial.
+
+- Added `blacklist g_serial` to `/etc/modprobe.d/blacklist`
+- Created a `/etc/default/midiconfigfs` with my default values
+- Added my script to be loaded at `/etc/rc.local`
+
 # Bugs, suggestions...
 
 Please open a ticket on GitHub.

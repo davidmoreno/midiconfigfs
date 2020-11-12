@@ -46,11 +46,11 @@ enable_udc_raspberrypi4(){
 
 enable_udc_orangepi_zero(){
     echo "Ensure UDC is enabled for Orange Pi Zero"
-    modprobe libcomposite
     rmmod g_serial
+    modprobe libcomposite
     UDC=$( ls -1 /sys/class/udc | head -1 )
 }
-
+    
 [ -e "/etc/default/midiconfigfs" ] && . /etc/default/midiconfigfs
 
 parse_arguments() {
@@ -63,7 +63,7 @@ parse_arguments() {
             shift
             NAME=$1
             ;;
-        --usb_id)
+        --usb_id|--usb-id)
             shift
             ID_PRODUCT=$( echo $1 | sed s/.*://g | sed s/^0x//g )
             ID_VENDOR=$( echo $1 | sed s/:.*//g | sed s/^0x//g )
@@ -83,11 +83,11 @@ parse_arguments() {
             create_configfs_midi
             exit 0
             ;;
-        --in_ports|in-ports)
+        --in_ports|--in-ports)
             shift
             IN_PORTS=$1
             ;;
-        --out_ports|out-ports)
+        --out_ports|--out-ports)
             shift
             OUT_PORTS=$1
             ;;
@@ -107,9 +107,11 @@ $0 - Simple wrapper to create a MIDI gadget
 Arguments:  
  --name NAME          -- Set product name. Also used to remove it later.
  --manufacturer NAME  -- Set manufacturer name. Also used to remove it later.
- --usb_id             -- Set the id_vendor:id_product
+ --usb-id             -- Set the id_vendor:id_product
  --remove NAME        -- Removes the USB Gadget
  --recreate NAME      -- Removes (if it exists) and creates it again
+ --in-ports NN        -- Creates NN in ports. Default 1.
+ --out-ports NN        -- Creates NN in ports. Default 1.
 
  --raspberrypi4       -- Ensure UDC works for Raspberry Pi 4
  --orangepizero       -- Ensure UDC works for Orange Pi Zero
@@ -117,6 +119,9 @@ EOF
 }
 
 create_configfs_midi() {
+    # If already loaded, does nothing.
+    modprobe libcomposite
+
     echo "Creating $NAME with USB id $ID_VENDOR:$ID_PRODUCT at $CONFIGFS/usb_gadget/$SAFE_NAME"
     UDC_USER=$( cat /sys/class/udc/$UDC/function )
     if [ "$UDC_USER" ]; then

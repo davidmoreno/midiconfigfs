@@ -1,0 +1,8 @@
+.*
+!.gitignore
+
+debian/source
+debian/midiconfigfs
+debian/files
+
+

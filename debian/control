@@ -1,0 +1,21 @@
+Source: midiconfigfs
+Section: sound
+Priority: optional
+Maintainer: David Moreno <dmoreno@unknown>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.4.1
+Homepage: https://github.com/davidmoreno/midiconfigfs
+#Vcs-Browser: https://salsa.debian.org/debian/midiconfigfs
+#Vcs-Git: https://salsa.debian.org/debian/midiconfigfs.git
+
+Package: midiconfigfs
+Architecture: all
+Depends: ${misc:Depends}
+Description: Script to simple export a MIDI USB gadget
+ Creates a MIDI USB gadget using an available UDC. Can be personalized with
+ USB ids, manufacturer, product name and so on.
+ .
+ It is intended for very basic uses, and to learn how to create more 
+ complex ones.
+ .
+ Configure details or leave defaults at /etc/default/midiconfigfs. 
